@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec | Ethical Hacker</title>
+    <style>
+        :root {
+            --primary: #00ff00;
+            --secondary: #005500;
+            --bg: #000000;
+            --text: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        nav a:hover::after {
+            content: "_";
+            position: absolute;
+            right: -5px;
+            animation: blink 1s infinite;
+        }
+
+        .terminal {
+            border: 1px solid var(--primary);
+            padding: 20px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .terminal::before {
+            content: "terminal@cyber-sec:~";
+            position: absolute;
+            top: -12px;
+            left: 10px;
+            background-color: var(--bg);
+            padding: 0 10px;
+        }
+
+        .prompt {
+            color: var(--primary);
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .status {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CYBER_SEC</h1>
+        <p>// Ethical Hacker & Security Researcher</p>
+    </header>
+
+    <nav>
+        <a href="#about">[About]</a>
+        <a href="#skills">[Skills]</a>
+        <a href="#projects">[Projects]</a>
+        <a href="#contact">[Contact]</a>
+    </nav>
+
+    <div class="terminal">
+        <div class="status">
+            Welcome to CYBER_SEC terminal interface<br>
+            Initializing secure connection...<br>
+            Establishing encrypted tunnel...<br>
+            Connection secured with AES-256 encryption
+        </div>
+
+        <div class="command-line">
+            <span class="prompt">></span> about_me.txt
+        </div>
+
+        <div id="about">
+            <h2>Who am I?</h2>
+            <p>A passionate ethical hacker and cybersecurity researcher dedicated to securing digital systems and educating others about cyber threats.</p>
+        </div>
+
+        <div id="skills">
+            <h2>Core Skills</h2>
+            <ul>
+                <li>Penetration Testing</li>
+                <li>Vulnerability Assessment</li>
+                <li>Network Security</li>
+                <li>Cryptography</li>
+                <li>Malware Analysis</li>
+                <li>Security Auditing</li>
+            </ul>
+        </div>
+
+        <div id="projects">
+            <h2>Notable Projects</h2>
+            <ul>
+                <li>Open-source security tool development</li>
+                <li>Corporate security infrastructure assessment</li>
+                <li>Security awareness training programs</li>
+            </ul>
+        </div>
+
+        <div id="contact">
+            <h2>Secure Contact</h2>
+            <p>PGP Key: XXXXXXXX</p>
+            <p>Email: contact@cyber-sec.example (encrypted preferred)</p>
+            <p>Signal: +X XXX XXX XXXX</p>
+        </div>
+    </div>
+
+    <script>
+        // Terminal-like typing effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const commands = [
+                {text: "skills.txt", target: "skills"},
+                {text: "projects.list", target: "projects"},
+                {text: "contact.sh", target: "contact"}
+            ];
+
+            let currentCommand = 0;
+            const commandLine = document.querySelector('.command-line');
+
+            function typeNextCommand() {
+                if (currentCommand < commands.length) {
+                    commandLine.innerHTML = `<span class="prompt">></span> <span class="typing">${commands[currentCommand].text}</span><span class="cursor">_</span>`;
+
+                    let i = 0;
+                    const typing = document.querySelector('.typing');
+                    const cursor = document.querySelector('.cursor');
+
+                    typing.textContent = '';
+
+                    function type() {
+                        if (i < commands[currentCommand].text.length) {
+                            typing.textContent += commands[currentCommand].text.charAt(i);
+                            i++;
+                            setTimeout(type, 100);
+                        } else {
+                            cursor.style.animation = 'none';
+                            setTimeout(() => {
+                                cursor.style.animation = 'blink 1s infinite';
+                                document.getElementById(commands[currentCommand].target).scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                                currentCommand++;
+                                setTimeout(typeNextCommand, 2000);
+                            }, 1000);
+                        }
+                    }
+
+                    type();
+                }
+            }
+
+            setTimeout(typeNextCommand, 3000);
+        });
+    </script>
+</body>
+</html>
